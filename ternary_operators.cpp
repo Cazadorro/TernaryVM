@@ -34,10 +34,6 @@ namespace tvm {
         return removed_u ^ isolated_01;
     }
 
-//alternate way, but slower
-//    std::uint64_t xor_op(std::uint64_t lhs, std::uint64_t rhs){
-//        return (lhs & not_op(rhs)) | (not_op(lhs) & rhs);
-//    }
     std::uint64_t xor_op(std::uint64_t lhs_110100, std::uint64_t rhs_001101) {
         std::uint64_t lhs_010100 = lhs_110100 & ALT_010101;
         std::uint64_t rhs_000101 = rhs_001101 & ALT_010101;
@@ -115,10 +111,6 @@ namespace tvm {
         std::uint64_t tf_11 = (alt_true_false_lhs ^ alt_true_false_rhs) & ~(is_unk);
         std::uint64_t uu_11 = is_unk_lhs & is_unk_rhs;
         std::uint64_t all_11 = tf_11 | uu_11;
-//        std::uint64_t lhs_010100 = lhs & ALT_010101;
-//        std::uint64_t rhs_010100 = ~rhs & ALT_101010;
-//        std::uint64_t lrs = lhs_010100 & (rhs_010100 >> 1);
-//        std::uint64_t lrs_11 = lrs | (lrs << 1);
         return isolate_TT_U | isolate_UOR | all_11;
     }
 
